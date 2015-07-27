@@ -4,9 +4,7 @@ class Grid
   attr_reader :rows, :columns
 
   def initialize(rows, columns)
-    @rows = rows
-    @columns = columns
-
+    @rows, @columns = rows, columns
     @grid = prepare_grid
     configure_cells
   end
@@ -62,7 +60,7 @@ class Grid
   end
 
   def to_s
-    output = '+' + '---+' * columns + "\n"
+    output = '+' + ('---+' * columns) + "\n"
 
     each_row do |row|
       top = '|'
@@ -71,9 +69,8 @@ class Grid
       row.each do |cell|
         cell = Cell.new(-1, -1) unless cell
 
-        body = '   '
         east_boundary = (cell.linked?(cell.east) ? ' ' : '|')
-        top << body << east_boundary
+        top << '   ' << east_boundary
 
         south_boundary = (cell.linked?(cell.south) ? '   ' : '---')
         corner = '+'

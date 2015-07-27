@@ -29,10 +29,9 @@ class Cell
 
   def neighbors
     list = []
-    list << north if north
-    list << south if south
-    list << east if east
-    list << west if west
+    [north, south, east, west].each do |dir|
+      list << dir if dir
+    end
     list
   end
 end
