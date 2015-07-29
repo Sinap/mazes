@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from cell import Cell
 
 
@@ -44,8 +45,8 @@ class Grid(object):
 
             cell.north = self.get(row - 1, col)
             cell.south = self.get(row + 1, col)
-            cell.east = self.get(row, col - 1)
-            cell.west = self.get(row, col + 1)
+            cell.east = self.get(row, col + 1)
+            cell.west = self.get(row, col - 1)
 
     def __len__(self):
         return self._rows * self._columns
@@ -57,17 +58,10 @@ class Grid(object):
             bottom = '+'
 
             for cell in row:
-                if cell.east in cell:
-                    east_boundary = ' '
-                else:
-                    east_boundary = '|'
+                east_boundary = ' ' if cell.east in cell else '|'
+                south_boundary = '   ' if cell.south in cell else '---'
+
                 top += '   ' + east_boundary
-
-                if cell.south in cell:
-                    south_boundary = '   '
-                else:
-                    south_boundary = '---'
-
                 bottom += south_boundary + '+'
 
             output += top + '\n'

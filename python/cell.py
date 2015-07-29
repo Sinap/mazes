@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 
 class Cell(object):
     """
@@ -42,3 +44,6 @@ class Cell(object):
 
     def __contains__(self, cell):
         return self._links.get(cell, False)
+
+    def __str__(self):
+        return 'row: %i column: %i' % (self.row, self.column)
